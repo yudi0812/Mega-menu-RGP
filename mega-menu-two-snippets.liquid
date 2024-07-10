@@ -1,0 +1,48 @@
+ <!-- part of navigation.liquid -->
+ <ul class=“sub-nav sub-nav-absolute-class“>
+                {% for sublink in link.links %}
+                  <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                      {%- liquid 
+                             if linklists[sublink.handle].links.size
+                                 render ‘megamenu’, mega_menu_handle: sublink.handle
+                             endif
+                       -%}
+                      </li>
+                {% endfor %}
+</ul>
+
+
+<!-- part of megamenu.liquid -->
+<div class=“mega-menu-wrapper”> {% capture list_menu %}
+       {% for link in linklists[mega_menu_handle].links %}
+           {% if link.links.size > 0 %}
+            <ul>
+             <li class=“sub-link-header”>{{ link.title }}</li>               {% for sublink in link.links %}
+                     <li> <a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
+              {% endfor %} 
+            </ul>
+           {% endif %} 
+       {% endfor %}
+{% endcapture %}
+
+{% capture image_cards %}
+       {% for link in linklists[mega_menu_handle].links %}
+           {% if link.links.size == 0 %}
+            <div class=“image-card”>
+               {% render ‘image-card’, item: link %}
+               {% comment %}
+                 will add one snippet which will handle badges of products and render image with title and sub heading. Also we can use slider script to create slider of these image cards.
+               {% endcomment %}
+            </div>
+           {% endif %} 
+       {% endfor %}
+{% endcapture %}
+
+    <div class=“list-menu”>
+       {{ list_menu }}
+    </div>
+    <div class=“image-cards-slider”>
+     {{ image_cards }}
+   </div>
+ </div>
