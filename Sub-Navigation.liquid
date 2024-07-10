@@ -1,0 +1,38 @@
+{% assign main_menu = linklists[section.settings.main_menu_link_list] %}
+<header class=“parent-relative-class”> 
+  <div class="header__wrapper">
+   {% comment %}
+    mobile-navigation.liquid
+     this nav will be part of navigation.liquid snippet , added here for demo only 
+    <nav class="header__nav">
+      <ul>
+        {% for link in main_menu.links %}
+          <li class="nav-item">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            {% if link.links %}
+              <ul class=“sub-nav sub-nav-absolute-class“>
+                {% for sublink in link.links %}
+                  <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+     megamenu will go here
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endcomment %}
+   <div class="header__logo">
+     {% comment %}
+      logo will here
+     {% endcomment %}
+    </div>
+    <div class=“header__top-menu">
+     {% comment %}
+     right menu and search bar will here
+     {% endcomment %}
+    </div>
+  </div>
+</header>
